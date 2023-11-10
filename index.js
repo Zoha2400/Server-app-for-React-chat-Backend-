@@ -19,6 +19,9 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log(socket.id);
+  socket.on("send-message", (currentMessage) => {
+    io.emit("send-back", currentMessage);
+  });
 });
 
 server.listen(PORT, () => {
